@@ -1,3 +1,7 @@
+package ar.edu.uns.cs.ed.tdas.tdapila;
+
+import ar.edu.uns.cs.ed.tdas.excepciones.EmptyStackException;
+
 public class PilaConArreglo<E> implements Stack<E>{
 
     private int cant;
@@ -8,6 +12,11 @@ public class PilaConArreglo<E> implements Stack<E>{
         cant = 0;
     }
 
+    public PilaConArreglo() {
+        arreglo = (E[]) new Object[100];
+        cant = 0;
+    } 
+
     public int size() {
         return cant;
     }
@@ -17,6 +26,8 @@ public class PilaConArreglo<E> implements Stack<E>{
     }
 
     public E top() {
+        if (isEmpty())
+            throw new EmptyStackException("La pila está vacía");
         return arreglo[cant-1];
     }
 
@@ -36,14 +47,10 @@ public class PilaConArreglo<E> implements Stack<E>{
 
     public E pop() {
         if (isEmpty())
-            Throws new EmptyStackException("No se puede sacar elementos de una pila vacia");
-        
-
-
-       /*  private E aux = (E) new Object();
-        aux = arreglo[cant-1];
+            throw new EmptyStackException("No se puede sacar elementos de una pila vacia");
+        E aux = arreglo[cant-1];
         arreglo[cant-1] = null;
-        return aux; */
+        cant--;
+        return aux;                 
     }
-    
 }
