@@ -34,6 +34,8 @@ public class ColaConArreglo<E> implements Queue<E> {
     public void enqueue(E elem) {
         if (arreglo.length == cant)             {
             E[] nuevo = (E[]) new Object[arreglo.length * 2];
+            for (int i=0; i < cant; i++)
+                nuevo[i] = arreglo[i];
             arreglo = nuevo;                    }
         arreglo[cant] = elem;
         cant++;
