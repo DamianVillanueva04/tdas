@@ -1,6 +1,8 @@
 package ar.edu.uns.cs.ed.tdas.tdamapeo;
 
 import ar.edu.uns.cs.ed.tdas.excepciones.*;
+import ar.edu.uns.cs.ed.tdas.tdaarbolbinario.BTNodo;
+import ar.edu.uns.cs.ed.tdas.tdaarbolbinario.BinaryTree;
 import ar.edu.uns.cs.ed.tdas.Entry;
 import ar.edu.uns.cs.ed.tdas.Position;
 import ar.edu.uns.cs.ed.tdas.tdalista.ListaDoble;
@@ -101,4 +103,45 @@ public class MapaHash<K,V> implements Map<K,V> {
                 lista.addLast(p.element());                         }         }
         return lista;
     }
+
+
+    /*
+    public Map<Character, Integer> eliminarHojas(BinaryTree<Character> arbol,Position<Character> p) throws InvalidPositionException {
+        BTNodo<Character> n = checkPosition(p);
+        Map<Character,Integer> mapa = new MapaHash<Character,Integer>();
+        if (arbol.isExternal(n)) {
+            mapa.put(n.element(),1);
+            arbol.removeExternalNode(n);
+            return mapa; 
+        }
+        PositionList<BTNodo<Character>> lista = new ListaDoble<BTNodo<Character>>();
+        postOrden(arbol,n,lista);
+        for (BTNodo<Character> pos: lista) {
+            if (mapa.get(pos.element()) != null)
+                mapa.put(pos.element(), mapa.get(pos.element())+1);
+            else {
+                mapa.put(pos.element(), 1);
+            }
+            arbol.removeExternalNode(pos);
+        }
+        return mapa;
+    }
+
+    private void postOrden(BinaryTree<Character> t, Position<Character> p, PositionList<Position<Character>> l) {
+        if (t.hasLeft(p))
+            postOrden(t,t.left(p),l);
+        if (t.hasRight(p))
+            postOrden(t,t.right(p),l);
+        if (t.isExternal(p))
+            l.addLast(p);
+    }
+
+    private BTNodo<Character> checkPosition(Position<Character> p) {
+        try {
+            if (p == null) throw new InvalidPositionException("posicion nula");
+            if (p.element() == null) throw new InvalidPositionException("el nodo es nulo");
+            return (BTNodo<E>) p;
+        } catch (ClassCastException c) { throw new InvalidPositionException("la posicion no corresponde a un arbol");}
+    } */
+
     }

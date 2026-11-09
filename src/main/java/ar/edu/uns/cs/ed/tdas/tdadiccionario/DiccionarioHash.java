@@ -5,6 +5,7 @@ import ar.edu.uns.cs.ed.tdas.tdalista.ListaDoble;
 import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
 import ar.edu.uns.cs.ed.tdas.tdamapeo.Entrada;
 import ar.edu.uns.cs.ed.tdas.excepciones.*;
+import ar.edu.uns.cs.ed.tdas.tdaarbolbinario.BinaryTree;
 
 public class DiccionarioHash<K,V> implements Dictionary<K,V> {
 
@@ -110,5 +111,28 @@ public class DiccionarioHash<K,V> implements Dictionary<K,V> {
         return listaEliminados;
     }
 
+    /* creo mapa
+    si es hoja
+        agrego al mapa
+        elimino p
+        return mapa
+    creo lista
+    postOrden(arbol, p, lista)
+    recorro la lista (solo habrian hojas)
+        si (mapa.get(element()) != null)
+            mapa.put(element(), mapa.get(element()+1))
+        else agrego a mapa con (element(),1)
+        elimino la hoja
+
+
+    postOrden:
+    si tiene left 
+        postOrden(arbol, left, lista)
+    si tiene right
+        postOrden(arbol, right, lista)
+    si (posicion es hoja)
+        agrego a la lista
+    return void
+*/
 }
 

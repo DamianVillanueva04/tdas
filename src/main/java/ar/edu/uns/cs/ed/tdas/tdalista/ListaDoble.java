@@ -160,4 +160,32 @@ public class ListaDoble<E> implements PositionList<E> {
             addBefore(trailer.getPrev(), e2);    }
     }                                                //tiempo de ejecucion constante
 
+
+    //de parcial
+    public PositionList<E> copiarElemPosPar() throws EmptyListException {
+        if (this.isEmpty()) throw new EmptyListException("la lista está vacía");
+        PositionList<E> nueva = new ListaDoble<E>();
+        int cont = 0;
+        for (Position<E> p: this.positions()) {
+            cont++;
+            if ((cont % 2) == 0) {
+                nueva.addLast(p.element());
+
+            }
+    }
+
+    public boolean contieneEnOrden(PositionList<E> l1, PositionList<E> l2) {
+        if (l1.isEmpty()) return true;
+        if (!l1.isEmpty() && l2.isEmpty()) return false;
+
+        boolean resultado = true;
+        Position<E> cursor = l2.first();
+
+        for (Position<E> pos: l1.positions()) {
+            while (cursor != l2.last().getNext() && !encontre) {
+                boolean encontre = false;
+                if (pos.element().equals(cursor.element()))
+                    encontre = true;
+    }
+}}
 }

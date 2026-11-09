@@ -211,7 +211,61 @@ public class BTArbol<E> implements BinaryTree<E> {
     retorne un iterable de caracteres con la notación infija de la expresión que el 
     árbol representa */
 
-    private Iterable<Character> arbolExpresion(BTArbol<Character>) {
-
+    private Iterable<Character> arbolExpresion(BTArbol<Character> arbol) {
+        PositionList<Character> lista = new ListaDoble<Character>();
+        if (!arbol.isEmpty())
+            inOrden(arbol, arbol.root(), lista);
+        return lista;
     }
+
+    private void inOrden(BTArbol<Character> a, Position<Character> p, PositionList<Character> l) {
+        BTNodo<Character> n = (BTNodo<Character>) p;
+        if (n.getLeft() != null) {
+            inOrden(a,n.getLeft(),l); }
+
+        l.addLast(n.element());
+
+        if (n.getRight() != null)
+            inOrden(a,n.getRight(),l);
+    }
+
+
+    /*Ejercicio 4:
+    a. Escriba un método cuya signatura sea: public void completarDerechos(E r, BinaryTree<E> t)
+    tal que agregue como hijos derechos (de aquellos nodos que solo tengan hijo izquierdo) 
+    nodos con rótulos r. Este método deberá lanzar EmptyTreeException en caso de que el 
+    árbol t se encuentre vacío.
+    b. Indique el orden del tiempo de ejecución de su solución. Justifique adecuadamente. */
+
+    public void completarDerechos(E r, BinaryTree<E> t) {
+        if (t.isEmpty()) throw new EmptyTreeException("el arbol está vacío");
+        for (Position<E> pos: t.positions())
+            if ((t.hasLeft(pos)) && (!t.hasRight(pos)))
+                t.addRight(pos,r);
+    }
+
+
+    /*Ejercicio 5: Agregue un método a la clase definida en el ejercicio 1 cuya signatura sea: public void
+    eliminarSubarbol(Position<E> p). Este método deberá eliminar del árbol receptor del mensaje todo el
+    subárbol con raíz p. Recuerde que para este ejercicio cuenta con acceso total a la estructura y 
+    que el método deberá lanzar InvalidPositionException si p no es válida. */
+
+    public void eliminarSubarbol(Position<E> p) {
+        BTNodo<E> nodoRaiz = checkPosition(p);
+        PositionList<Position<E>> lista = new ListaDoble<Position<E>>();
+        postOrden(nodoRaiz, this, lista);
+        for (Position<E> pos: lista)
+            removeNode(pos);
+    }
+
+    private void postOrden(Position<E> p, BinaryTree<E> t, PositionList<Position<E>> l) {
+        BTNodo<E> nodo = checkPosition(p);
+        if (t.hasLeft(nodo))
+            postOrden(nodo.getLeft(), t, l);
+        if (t.hasRight(nodo))
+            postOrden(nodo.getRight(),t,l);
+        l.addLast(nodo);
+    }
+
+    
 }
