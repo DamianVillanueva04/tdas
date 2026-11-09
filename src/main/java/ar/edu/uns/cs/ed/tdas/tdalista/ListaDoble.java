@@ -142,7 +142,7 @@ public class ListaDoble<E> implements PositionList<E> {
     private DNodo<E> checkPosition(Position<E> p){
         try{
             if( p == null) throw new InvalidPositionException("la posicion es nula") ;
-            if(p.element() == null ) throw new InvalidPositionException("la posicion fue removida previamente") ;
+            if(p.element() == null) throw new InvalidPositionException("la posicion fue removida previamente") ;
             return (DNodo<E>) p ;
         }
         catch( ClassCastException c) { throw new InvalidPositionException("la posicion no pertenece a la lista") ;}

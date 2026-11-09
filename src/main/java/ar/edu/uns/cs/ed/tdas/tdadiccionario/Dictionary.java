@@ -57,5 +57,5 @@ public interface Dictionary<K,V>
 	 * @return Colección iterable de todas las entradas.
 	 */
 	public Iterable<Entry<K,V>> entries();
-	
+		
 }

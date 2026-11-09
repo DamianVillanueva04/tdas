@@ -6,7 +6,7 @@ public class tp5 {
 
     
     public Map<Character,Integer> ejd(PositionList<Character> lista) {
-	Map<Character,Integer> mapa = new MapHash<Character,Integer>();
+	Map<Character,Integer> mapa = new MapaHash<Character,Integer>();
 	for (Position<Character> p: lista.positions())                          {
 		if (mapa.get(p.element()) == null)
 			mapa.put(p.element(),1);
